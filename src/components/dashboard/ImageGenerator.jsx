@@ -10,7 +10,8 @@ export default function ImageGenerator() {
   const [error, setError] = useState("");
   const [showPopup, setShowPopup] = useState(false);
 
-  const apiKey = "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";
+  // Using environment variable instead of hardcoding the API key
+  const apiKey = import.meta.env.PUBLIC_IMAGE_API_KEY;
 
   const model = "stabilityai/stable-diffusion-xl-base-1.0";
 
@@ -58,6 +59,12 @@ export default function ImageGenerator() {
     setImageUrl("");
 
     try {
+      if (!apiKey) {
+        throw new Error(
+          "API key is not configured. Please check your environment variables."
+        );
+      }
+
       const fullPrompt = `${prompt}, ${style} style`;
 
       const [width, height] = size.split("x").map((num) => parseInt(num, 10));

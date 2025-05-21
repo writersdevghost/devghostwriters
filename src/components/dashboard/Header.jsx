@@ -1,8 +1,33 @@
 import { useState, useEffect } from "react";
 import { Menu, Settings, User, LogOut } from "lucide-react";
+import { auth } from "../../firebase/firebase-config.js";
+import { signOut } from "firebase/auth";
 
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
+  const [userName, setUserName] = useState("User");
+  const [userInitial, setUserInitial] = useState("U");
+
+  // Get user info on component mount
+  useEffect(() => {
+    const getUserData = () => {
+      try {
+        const userData = JSON.parse(localStorage.getItem("user"));
+        if (userData && userData.email) {
+          // Extract first letter of email for avatar
+          setUserInitial(userData.email.charAt(0).toUpperCase());
+
+          // Use email username as display name
+          const displayName = userData.email.split("@")[0];
+          setUserName(displayName);
+        }
+      } catch (error) {
+        console.error("Error getting user data:", error);
+      }
+    };
+
+    getUserData();
+  }, []);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -20,6 +45,20 @@ export default function Header() {
 
   const toggleSidebar = () => {
     document.documentElement.classList.toggle("sidebar-open");
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+
+      // Clear user data from localStorage
+      localStorage.removeItem("user");
+
+      // Redirect to home page
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   };
 
   return (
@@ -42,9 +81,9 @@ export default function Header() {
           onClick={() => setShowMenu(!showMenu)}
         >
           <div className="w-8 h-8 bg-[#00ADB5] rounded-full flex items-center justify-center text-[#EEEEEE] font-medium">
-            U
+            {userInitial}
           </div>
-          <span className="hidden md:inline">User</span>
+          <span className="hidden md:inline">{userName}</span>
         </button>
 
         {showMenu && (
@@ -64,13 +103,13 @@ export default function Header() {
               Settings
             </a>
             <hr className="my-1 border-gray-200/20" />
-            <a
-              href="/"
-              className="flex items-center px-4 py-2 hover:bg-[#393E46] text-[#00ADB5]"
+            <button
+              onClick={handleSignOut}
+              className="w-full text-left flex items-center px-4 py-2 hover:bg-[#393E46] text-[#00ADB5]"
             >
               <LogOut size={16} className="mr-2" />
               Sign Out
-            </a>
+            </button>
           </div>
         )}
       </div>
