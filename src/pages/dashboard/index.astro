@@ -1,0 +1,264 @@
+---
+import DashboardLayout from "../../layouts/DashboardLayout.astro";
+import {
+  Code,
+  Bug,
+  FileSearch,
+  RefreshCw,
+  Image,
+  Sparkles,
+  Minimize2,
+  BarChart2,
+} from "lucide-react";
+
+// For SSR, we'll use a simpler approach to avoid Firebase initialization issues
+// We'll rely on client-side authentication check only
+
+// Check if user is authenticated using localStorage (client-side only)
+let isAuthenticated = false;
+let redirectToLogin = false;
+
+// We'll set this on the client side with the script below
+if (typeof localStorage !== "undefined") {
+  try {
+    const user = localStorage.getItem("user");
+    isAuthenticated = !!user;
+  } catch (e) {
+    // Handle localStorage access errors
+    isAuthenticated = false;
+  }
+}
+
+// If not authenticated on initial check, we'll let the client-side script handle it
+// This avoids Firebase initialization issues during SSR
+---
+
+{
+  redirectToLogin ? (
+    <meta http-equiv="refresh" content="0;url=/login" />
+  ) : (
+    <DashboardLayout>
+      <div class="max-w-4xl ml-0 md:ml-20">
+        <h1 class="text-3xl font-bold mb-6 text-[#00ADB5]">
+          Welcome to AI Code Assistant
+        </h1>
+
+        <div class="p-6 rounded-lg shadow-lg bg-[#393E46]/70 backdrop-blur-md border border-[#00ADB5]/20">
+          <p class="mb-4 text-[#EEEEEE]">
+            Select a tool from the sidebar to get started:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <a href="/dashboard/snippet" class="glassmorphism-card group">
+              <div class="card-content">
+                <h3 class="text-lg font-medium mb-2 text-[#00ADB5] group-hover:text-[#EEEEEE] transition-colors">
+                  Snippet Generator
+                </h3>
+                <p class="text-gray-300 group-hover:text-gray-200">
+                  Generate code snippets using AI
+                </p>
+              </div>
+              <div class="card-icon">
+                <Code className="h-6 w-6" />
+              </div>
+            </a>
+
+            <a href="/dashboard/bugfixer" class="glassmorphism-card group">
+              <div class="card-content">
+                <h3 class="text-lg font-medium mb-2 text-[#00ADB5] group-hover:text-[#EEEEEE] transition-colors">
+                  Bug Fixer
+                </h3>
+                <p class="text-gray-300 group-hover:text-gray-200">
+                  Find and fix bugs in your code
+                </p>
+              </div>
+              <div class="card-icon">
+                <Bug className="h-6 w-6" />
+              </div>
+            </a>
+
+            <a href="/dashboard/explain" class="glassmorphism-card group">
+              <div class="card-content">
+                <h3 class="text-lg font-medium mb-2 text-[#00ADB5] group-hover:text-[#EEEEEE] transition-colors">
+                  Code Explainer
+                </h3>
+                <p class="text-gray-300 group-hover:text-gray-200">
+                  Get explanations for complex code
+                </p>
+              </div>
+              <div class="card-icon">
+                <FileSearch className="h-6 w-6" />
+              </div>
+            </a>
+
+            <a href="/dashboard/convert" class="glassmorphism-card group">
+              <div class="card-content">
+                <h3 class="text-lg font-medium mb-2 text-[#00ADB5] group-hover:text-[#EEEEEE] transition-colors">
+                  Code Converter
+                </h3>
+                <p class="text-gray-300 group-hover:text-gray-200">
+                  Convert code between languages
+                </p>
+              </div>
+              <div class="card-icon">
+                <RefreshCw className="h-6 w-6" />
+              </div>
+            </a>
+
+            <a href="/dashboard/image" class="glassmorphism-card group">
+              <div class="card-content">
+                <h3 class="text-lg font-medium mb-2 text-[#00ADB5] group-hover:text-[#EEEEEE] transition-colors">
+                  Image Generator
+                </h3>
+                <p class="text-gray-300 group-hover:text-gray-200">
+                  Generate images using AI
+                </p>
+              </div>
+              <div class="card-icon">
+                <Image className="h-6 w-6" />
+              </div>
+            </a>
+
+            <a href="/dashboard/refactor" class="glassmorphism-card group">
+              <div class="card-content">
+                <h3 class="text-lg font-medium mb-2 text-[#00ADB5] group-hover:text-[#EEEEEE] transition-colors">
+                  Refactoring Hints
+                </h3>
+                <p class="text-gray-300 group-hover:text-gray-200">
+                  Refactor your code with our ai
+                </p>
+              </div>
+              <div class="card-icon">
+                <Sparkles className="h-6 w-6" />
+              </div>
+            </a>
+
+            <a href="/dashboard/minify" class="glassmorphism-card group">
+              <div class="card-content">
+                <h3 class="text-lg font-medium mb-2 text-[#00ADB5] group-hover:text-[#EEEEEE] transition-colors">
+                  Code Minify
+                </h3>
+                <p class="text-gray-300 group-hover:text-gray-200">
+                  Minify your code
+                </p>
+              </div>
+              <div class="card-icon">
+                <Minimize2 className="h-6 w-6" />
+              </div>
+            </a>
+
+            <a href="/dashboard/complexity" class="glassmorphism-card group">
+              <div class="card-content">
+                <h3 class="text-lg font-medium mb-2 text-[#00ADB5] group-hover:text-[#EEEEEE] transition-colors">
+                  Complexity Score
+                </h3>
+                <p class="text-gray-300 group-hover:text-gray-200">
+                  Calculate the complexity of your code
+                </p>
+              </div>
+              <div class="card-icon">
+                <BarChart2 className="h-6 w-6" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </DashboardLayout>
+  )
+}
+
+<script>
+  // Client-side authentication check
+  document.addEventListener("DOMContentLoaded", function () {
+    try {
+      // Check localStorage first for quick check
+      const userData = localStorage.getItem("user");
+
+      if (!userData) {
+        // No user found in localStorage, redirect to login
+        window.location.href = "/signin";
+      } else {
+        // Import firebase config with your specific configuration
+        import("../../firebase/firebase-config.js")
+          .then(({ auth }) => {
+            import("firebase/auth")
+              .then(({ onAuthStateChanged }) => {
+                // Double-check with Firebase auth state
+                onAuthStateChanged(auth, (user) => {
+                  if (!user) {
+                    // Firebase says not logged in, clear localStorage and redirect
+                    localStorage.removeItem("user");
+                    window.location.href = "/login";
+                  }
+                });
+              })
+              .catch((err) => {
+                console.error("Error importing Firebase auth:", err);
+              });
+          })
+          .catch((err) => {
+            console.error("Error importing Firebase config:", err);
+            // If we can't import the config, redirect to login
+            window.location.href = "/login";
+          });
+      }
+    } catch (e) {
+      console.error("Error checking auth:", e);
+      // On any error, safest to redirect to login
+      window.location.href = "/login";
+    }
+  });
+</script>
+
+<style>
+  body {
+    background-color: #222831;
+    color: #eeeeee;
+  }
+
+  .glassmorphism-card {
+    @apply p-4 flex justify-between items-center rounded-lg transition-all duration-300;
+    background: rgba(57, 62, 70, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 173, 181, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glassmorphism-card:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 173, 181, 0.3);
+    border: 1px solid rgba(238, 238, 238, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .glassmorphism-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(238, 238, 238, 0.1),
+      transparent
+    );
+    transition: 0.5s;
+  }
+
+  .glassmorphism-card:hover::before {
+    left: 100%;
+  }
+
+  .card-content {
+    @apply flex-1;
+  }
+
+  .card-icon {
+    @apply ml-4 text-[#00ADB5] group-hover:text-[#EEEEEE] transition-colors;
+  }
+</style>

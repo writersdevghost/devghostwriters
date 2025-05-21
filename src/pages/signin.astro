@@ -1,0 +1,116 @@
+---
+import AuthForm from "../components/AuthForm.jsx";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div
+    class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#222831] to-[#393E46]"
+  >
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-full bg-[#222831] opacity-90">
+      </div>
+      <div
+        class="absolute top-1/4 -left-10 w-80 h-80 rounded-full bg-[#00ADB5] opacity-10 blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute bottom-1/4 -right-10 w-80 h-80 rounded-full bg-[#00ADB5] opacity-10 blur-3xl"
+      >
+      </div>
+
+      <div
+        class="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"
+        style="background-size: 40px 40px; background-image: linear-gradient(to right, #EEEEEE 1px, transparent 1px), linear-gradient(to bottom, #EEEEEE 1px, transparent 1px);"
+      >
+      </div>
+    </div>
+
+    <AuthForm client:only="react" />
+  </div>
+</Layout>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes typing {
+    from {
+      height: 0;
+    }
+    to {
+      height: 24px;
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  :global(.code-loader) {
+    font-family: monospace;
+    font-size: 24px;
+    color: #eeeeee;
+    display: flex;
+    align-items: center;
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  :global(.code-loader span) {
+    margin: 0 2px;
+  }
+
+  :global(.code-typing) {
+    font-family: monospace;
+    color: #eeeeee;
+  }
+
+  :global(.code-typing div) {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 8px;
+    animation: typing 1s steps(30, end) forwards;
+  }
+
+  :global(.code-typing div:nth-child(1)) {
+    animation-delay: 0.2s;
+  }
+
+  :global(.code-typing div:nth-child(2)) {
+    animation-delay: 1.2s;
+  }
+
+  :global(.code-typing div:nth-child(3)) {
+    animation-delay: 2.2s;
+  }
+
+  :global(.code-typing div:nth-child(4)) {
+    animation-delay: 3.2s;
+  }
+
+  :global(.code-typing div:nth-child(5)) {
+    animation-delay: 4.2s;
+  }
+
+  :global(.code-typing div::after) {
+    content: "|";
+    position: absolute;
+    right: 0;
+    animation: blink 0.7s infinite;
+  }
+</style>

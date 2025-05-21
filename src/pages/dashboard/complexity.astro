@@ -1,0 +1,17 @@
+---
+import DashboardLayout from "../../layouts/DashboardLayout.astro";
+import ComplexityScore from "../../components/dashboard/ComplexityScore.jsx";
+---
+
+<DashboardLayout>
+  <div class="max-w-4xl ml-0 md:ml-20">
+    <h1 class="text-3xl font-bold mb-2 text-[#00ADB5]">Complexity Score</h1>
+    <p class="text-gray-800 mb-6">
+      Paste your buggy code and we'll identify and fix the issues for you.
+    </p>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <ComplexityScore client:load />
+    </div>
+  </div>
+</DashboardLayout>

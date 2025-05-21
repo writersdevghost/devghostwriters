@@ -1,0 +1,306 @@
+---
+import DashboardLayout from "../../layouts/DashboardLayout.astro";
+---
+
+<DashboardLayout>
+  <div class="px-4 sm:px-6 py-6 w-full max-w-5xl mx-auto">
+    <div class="mb-6">
+      <h1 class="text-2xl font-bold text-[#00ADB5]">Settings</h1>
+      <p class="text-[#EEEEEE]/70 mt-1">Manage your account and preferences</p>
+    </div>
+
+    <div class="bg-[#222831] rounded-lg shadow-lg mb-6 overflow-hidden">
+      <div class="border-b border-[#393E46]">
+        <div class="flex overflow-x-auto scrollbar-hide">
+          <button
+            class="bg-[#393E46] text-[#EEEEEE] px-4 py-3 font-medium text-sm"
+            >Account</button
+          >
+          <button
+            class="text-[#EEEEEE]/80 hover:text-[#EEEEEE] px-4 py-3 font-medium text-sm"
+            >API Keys</button
+          >
+          <button
+            class="text-[#EEEEEE]/80 hover:text-[#EEEEEE] px-4 py-3 font-medium text-sm"
+            >Appearance</button
+          >
+          <button
+            class="text-[#EEEEEE]/80 hover:text-[#EEEEEE] px-4 py-3 font-medium text-sm"
+            >Notifications</button
+          >
+          <button
+            class="text-[#EEEEEE]/80 hover:text-[#EEEEEE] px-4 py-3 font-medium text-sm"
+            >Billing</button
+          >
+        </div>
+      </div>
+
+      <div class="p-5">
+        <div class="mb-8">
+          <h2 class="text-lg font-semibold text-[#EEEEEE] mb-4">
+            Profile Information
+          </h2>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm text-[#00ADB5] mb-1.5" for="name"
+                >Name</label
+              >
+              <input
+                type="text"
+                id="name"
+                value="John Smith"
+                class="w-full bg-[#393E46] border border-[#393E46] rounded px-3 py-2 text-[#EEEEEE] focus:border-[#00ADB5] focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm text-[#00ADB5] mb-1.5" for="email"
+                >Email Address</label
+              >
+              <input
+                type="email"
+                id="email"
+                value="john.smith@example.com"
+                class="w-full bg-[#393E46] border border-[#393E46] rounded px-3 py-2 text-[#EEEEEE] focus:border-[#00ADB5] focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm text-[#00ADB5] mb-1.5" for="role"
+                >Role</label
+              >
+              <input
+                type="text"
+                id="role"
+                value="Developer"
+                class="w-full bg-[#393E46] border border-[#393E46] rounded px-3 py-2 text-[#EEEEEE] focus:border-[#00ADB5] focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm text-[#00ADB5] mb-1.5" for="timezone"
+                >Timezone</label
+              >
+              <select
+                id="timezone"
+                class="w-full bg-[#393E46] border border-[#393E46] rounded px-3 py-2 text-[#EEEEEE] focus:border-[#00ADB5] focus:outline-none"
+              >
+                <option value="utc">UTC (GMT+0)</option>
+                <option value="est" selected>Eastern Time (GMT-5)</option>
+                <option value="pst">Pacific Time (GMT-8)</option>
+                <option value="ist">India Standard Time (GMT+5:30)</option>
+                <option value="cet">Central European Time (GMT+1)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Password Settings -->
+        <div class="mb-8">
+          <h2 class="text-lg font-semibold text-[#EEEEEE] mb-4">Password</h2>
+
+          <div class="space-y-4">
+            <div>
+              <label
+                class="block text-sm text-[#00ADB5] mb-1.5"
+                for="current-password">Current Password</label
+              >
+              <input
+                type="password"
+                id="current-password"
+                placeholder="••••••••"
+                class="w-full bg-[#393E46] border border-[#393E46] rounded px-3 py-2 text-[#EEEEEE] focus:border-[#00ADB5] focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-sm text-[#00ADB5] mb-1.5"
+                for="new-password">New Password</label
+              >
+              <input
+                type="password"
+                id="new-password"
+                placeholder="••••••••"
+                class="w-full bg-[#393E46] border border-[#393E46] rounded px-3 py-2 text-[#EEEEEE] focus:border-[#00ADB5] focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-sm text-[#00ADB5] mb-1.5"
+                for="confirm-password">Confirm New Password</label
+              >
+              <input
+                type="password"
+                id="confirm-password"
+                placeholder="••••••••"
+                class="w-full bg-[#393E46] border border-[#393E46] rounded px-3 py-2 text-[#EEEEEE] focus:border-[#00ADB5] focus:outline-none"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h2 class="text-lg font-semibold text-[#EEEEEE] mb-4">
+            General Preferences
+          </h2>
+
+          <div class="space-y-3">
+            <div>
+              <label class="block text-sm text-[#00ADB5] mb-1.5" for="language"
+                >Interface Language</label
+              >
+              <select
+                id="language"
+                class="w-full bg-[#393E46] border border-[#393E46] rounded px-3 py-2 text-[#EEEEEE] focus:border-[#00ADB5] focus:outline-none"
+              >
+                <option value="en" selected>English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="zh">Chinese</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm text-[#00ADB5] mb-1.5" for="theme"
+                >Theme</label
+              >
+              <select
+                id="theme"
+                class="w-full bg-[#393E46] border border-[#393E46] rounded px-3 py-2 text-[#EEEEEE] focus:border-[#00ADB5] focus:outline-none"
+              >
+                <option value="system" selected>System Default</option>
+                <option value="dark">Dark Mode</option>
+                <option value="light">Light Mode</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="h-4 w-4 text-[#00ADB5] rounded"
+                  checked
+                />
+                <span class="ml-2 text-sm text-[#EEEEEE]"
+                  >Enable keyboard shortcuts</span
+                >
+              </label>
+            </div>
+
+            <div>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="h-4 w-4 text-[#00ADB5] rounded"
+                  checked
+                />
+                <span class="ml-2 text-sm text-[#EEEEEE]">Auto-save drafts</span
+                >
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h2 class="text-lg font-semibold text-[#EEEEEE] mb-4">
+            AI Configuration
+          </h2>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm text-[#00ADB5] mb-1.5" for="model"
+                >Default AI Model</label
+              >
+              <select
+                id="model"
+                class="w-full bg-[#393E46] border border-[#393E46] rounded px-3 py-2 text-[#EEEEEE] focus:border-[#00ADB5] focus:outline-none"
+              >
+                <option value="standard">Standard</option>
+                <option value="fast" selected>Fast</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="h-4 w-4 text-[#00ADB5] rounded"
+                  checked
+                />
+                <span class="ml-2 text-sm text-[#EEEEEE]"
+                  >Use automatic processing</span
+                >
+              </label>
+            </div>
+
+            <div>
+              <label class="flex items-center">
+                <input type="checkbox" class="h-4 w-4 text-[#00ADB5] rounded" />
+                <span class="ml-2 text-sm text-[#EEEEEE]"
+                  >Save all generated content to history</span
+                >
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold text-[#EEEEEE] mb-4">Advanced</h2>
+
+          <div class="space-y-4">
+            <div>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="h-4 w-4 text-[#00ADB5] rounded"
+                  checked
+                />
+                <span class="ml-2 text-sm text-[#EEEEEE]"
+                  >Enable beta features</span
+                >
+              </label>
+            </div>
+
+            <div>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="h-4 w-4 text-[#00ADB5] rounded"
+                  checked
+                />
+                <span class="ml-2 text-sm text-[#EEEEEE]"
+                  >Allow anonymous usage statistics</span
+                >
+              </label>
+            </div>
+
+            <div class="pt-2">
+              <button class="text-[#EEEEEE]/70 hover:text-[#00ADB5] text-sm">
+                Download My Data
+              </button>
+            </div>
+
+            <div>
+              <button class="text-red-400 hover:text-red-300 text-sm">
+                Delete Account
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-[#393E46] flex justify-end">
+          <button
+            class="bg-[#00ADB5] hover:bg-[#00ADB5]/80 text-[#EEEEEE] px-4 py-2 rounded font-medium transition-colors duration-200"
+          >
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DashboardLayout>

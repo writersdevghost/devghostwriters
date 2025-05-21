@@ -1,0 +1,18 @@
+---
+import DashboardLayout from "../../layouts/DashboardLayout.astro";
+import SnippetGenerator from "../../components/dashboard/SnippetGenerator.jsx";
+---
+
+<DashboardLayout>
+  <div class="max-w-4xl ml-0 md:ml-20">
+    <h1 class="text-3xl font-bold mb-2 text-[#00ADB5]">Snippet Generator</h1>
+    <p class="text-gray-600 mb-6">
+      Generate code snippets using AI. Describe what you need, and we'll create
+      the code for you.
+    </p>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <SnippetGenerator client:load />
+    </div>
+  </div>
+</DashboardLayout>

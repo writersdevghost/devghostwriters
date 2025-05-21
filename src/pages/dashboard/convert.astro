@@ -1,0 +1,17 @@
+---
+import DashboardLayout from "../../layouts/DashboardLayout.astro";
+import CodeConverter from "../../components/dashboard/CodeConverter.jsx";
+---
+
+<DashboardLayout>
+  <div class="max-w-4xl ml-0 md:ml-20">
+    <h1 class="text-3xl font-bold mb-2 text-[#00ADB5]">Code Converter</h1>
+    <p class="text-gray-600 mb-6">
+      Convert code from one programming language to another.
+    </p>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <CodeConverter client:load />
+    </div>
+  </div>
+</DashboardLayout>

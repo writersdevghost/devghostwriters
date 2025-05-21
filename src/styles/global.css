@@ -1,0 +1,23 @@
+
+@font-face {
+  font-family: 'Le Jour Serif';
+  src: url('../assets/fonts/le-jour-serif.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apply Le Jour Serif to all text elements */
+/* @layer base {
+  html {
+    font-family: 'Le Jour Serif', serif;
+  }
+} */
+
+body {
+  @apply bg-dark1 text-light;
+}
